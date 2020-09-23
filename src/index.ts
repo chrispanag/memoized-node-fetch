@@ -1,9 +1,9 @@
-import fetch, { RequestInfo, RequestInit } from 'node-fetch';
+import fetch, { RequestInfo, RequestInit, Response } from 'node-fetch';
 
 export default class MemoizedNodeFetch {
-    private promiseCache: Map<string, Promise<any>> = new Map();
+    private promiseCache: Map<string, Promise<Response>> = new Map();
 
-    private async wrapper(key: string, promise: Promise<any>) {
+    private async wrapper(key: string, promise: Promise<Response>) {
         await promise;
 
         this.promiseCache.delete(key);
