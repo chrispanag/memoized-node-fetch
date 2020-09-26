@@ -1,25 +1,30 @@
 import fetch, { RequestInfo, RequestInit, Response } from 'node-fetch';
 
-export default class MemoizedNodeFetch {
-    private promiseCache: Map<string, Promise<Response>> = new Map();
+export type FetchFunctionType = (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response>
 
-    private async wrapper(key: string, promise: Promise<Response>) {
+export default function memoizedNodeFetchFactory(fetchFunction: FetchFunctionType = fetch) {
+    const promiseCache: Map<string, Promise<Response>> = new Map();
+
+    async function wrapper(key: string, promise: Promise<Response>) {
         await promise;
 
-        this.promiseCache.delete(key);
+        promiseCache.delete(key);
 
         return promise;
     }
 
-    public fetch(url: RequestInfo, options: RequestInit) {
-        const key = JSON.stringify(url) + JSON.stringify(options);
-        if (this.promiseCache.has(key)) {
-            return this.promiseCache.get(key);
+    function wrappedFetch(url: RequestInfo, options?: RequestInit) {
+        // Is there a better way?
+        const key = url.toString() + JSON.stringify(options);
+        if (promiseCache.has(key)) {
+            return promiseCache.get(key);
         }
 
-        const promise = this.wrapper(key, fetch(url, options));
-        this.promiseCache.set(key, promise);
+        const promise = wrapper(key, fetchFunction(url, options));
+        promiseCache.set(key, promise);
 
         return promise;
     }
+
+    return wrappedFetch;
 }
