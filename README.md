@@ -8,16 +8,16 @@ A wrapper around [node-fetch](https://www.npmjs.com/package/node-fetch) (or any 
 
 Sometimes, you have to interface with an API that doesn't respond fast enough. Moreover, you might perform the same request multiple times. So:
 
-1. You overload the API with the same exactly request
-2. You wait a lot of more time till the API responds.
+1. You overload the API with the same exact requests.
+2. You wait for additional time during the API response.
 
 ### The solution
 
-Return the same promise for the same exactly request. This is more useful when you interface with stateless APIs where you just consume data.
+Return the same promise for the same exact requests. This is more useful when you interface with stateless APIs, where you just consume data.
 
 ## Usage
 
-The API is a wrapper around node-fetch.
+This API is a wrapper around node-fetch.
 
 Install the module: `$ npm i memoized-node-fetch`
 
@@ -45,7 +45,7 @@ const fetch = memoizedNodeFetch();
 
 #### How do you know that two requests are the same?
 
-The parameters of the two fetch functions, are compared (the url and the RequestOptions). The specific key used for comparing the requests is: 
+The parameters of the two fetch functions are compared (the url and the RequestOptions), the specific key used for comparing the requests is: 
 
 `const key = url.toString() + JSON.stringify(options);`
 
