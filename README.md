@@ -1,5 +1,7 @@
 # Memoized Node Fetch
 
+[![npm](https://img.shields.io/npm/v/memoized-node-fetch)](https://www.npmjs.com/package/memoized-node-fetch)
+
 A wrapper around [node-fetch](https://www.npmjs.com/package/node-fetch) (or any other fetch-like function) that returns a single promise until it resolves.
 
 ## Why?
