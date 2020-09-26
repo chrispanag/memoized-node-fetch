@@ -38,3 +38,29 @@ const fetch = memoizedNodeFetch();
     console.log(await res2.json());
 })();
 ```
+
+### FAQ
+
+#### How do you know that two requests are the same?
+
+The parameters of the two fetch functions, are compared (the url and the RequestOptions). The specific key used for comparing the requests is: 
+
+`const key = url.toString() + JSON.stringify(options);`
+
+#### Can I use another fetch-like function?
+
+Of course, you can use your own `fetch` like this:
+
+```typescript
+function myOwnFetch(url: RequestInfo, options?: RequestInit | undefined): Promise<Response> {
+    /* bla bla bla */
+}
+
+const fetch = memoizedNodeFetch(myOwnFetch);
+
+/* Use the fetch... */
+```
+
+#### Can I have multiple promise-cache instances?
+
+Yes! Each time you run the factory function, a new promise-cache is created.
