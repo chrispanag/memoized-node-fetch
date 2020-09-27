@@ -74,17 +74,17 @@
 				</a>
 				<p>Sometimes, you have to interface with an API that doesn&#39;t respond fast enough. Moreover, you might perform the same request multiple times. So:</p>
 				<ol>
-					<li>You overload the API with the same exactly request</li>
-					<li>You wait a lot of more time till the API responds.</li>
+					<li>You overload the API with the same exact requests.</li>
+					<li>You wait for additional time during the API response.</li>
 				</ol>
 				<a href="#the-solution" id="the-solution" style="color: inherit; text-decoration: none;">
 					<h3>The solution</h3>
 				</a>
-				<p>Return the same promise for the same exactly request. This is more useful when you interface with stateless APIs where you just consume data.</p>
+				<p>Return the same promise for the same exact requests. This is more useful when you interface with stateless APIs, where you just consume data.</p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<p>The API is a wrapper around node-fetch.</p>
+				<p>This API is a wrapper around node-fetch.</p>
 				<p>Install the module: <code>$ npm i memoized-node-fetch</code></p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> memoizedNodeFetch <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;memoized-node-fetch&#x27;</span>;
 
@@ -109,7 +109,7 @@
 				<a href="#how-do-you-know-that-two-requests-are-the-same" id="how-do-you-know-that-two-requests-are-the-same" style="color: inherit; text-decoration: none;">
 					<h4>How do you know that two requests are the same?</h4>
 				</a>
-				<p>The parameters of the two fetch functions, are compared (the url and the RequestOptions). The specific key used for comparing the requests is: </p>
+				<p>The parameters of the two fetch functions are compared (the url and the RequestOptions), the specific key used for comparing the requests is: </p>
 				<p><code>const key = url.toString() + JSON.stringify(options);</code></p>
 				<a href="#can-i-use-another-fetch-like-function" id="can-i-use-another-fetch-like-function" style="color: inherit; text-decoration: none;">
 					<h4>Can I use another fetch-like function?</h4>
