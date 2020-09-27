@@ -49,6 +49,8 @@ The parameters of the two fetch functions are compared (the url and the RequestO
 
 `const key = url.toString() + JSON.stringify(options);`
 
+There is a plan to use a proper hash of the query parameters in the future.
+
 #### Can I use another fetch-like function?
 
 Of course, you can use your own `fetch` like this:
