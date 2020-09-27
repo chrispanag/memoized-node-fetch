@@ -8,12 +8,12 @@ A wrapper around [node-fetch](https://www.npmjs.com/package/node-fetch) (or any 
 
 Sometimes, you have to interface with an API that doesn't respond fast enough. Moreover, you might perform the same request multiple times. So:
 
-1. You overload the API with the same exact requests.
-2. You wait for additional time during the API response.
+* You overload the API with the same exact requests.
+* You wait for additional time during the API response.
 
 ### The solution
 
-Return the same promise for the same exact requests. This is more useful when you interface with stateless APIs, where you just consume data.
+Return the same promise for the same exact requests **until they resolve**. This is more useful when you interface with stateless APIs, where you just consume data. 
 
 ## Usage
 
@@ -42,6 +42,10 @@ const fetch = memoizedNodeFetch();
 ```
 
 ### FAQ
+
+#### Is this a permanent cache?
+
+No. This package only caches the promise until it resolves. After the promise resolves, it is removed from the cache.
 
 #### How do you know that two requests are the same?
 
