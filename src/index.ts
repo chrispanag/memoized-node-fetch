@@ -1,4 +1,5 @@
 import fetch, { RequestInfo, RequestInit, Response } from 'node-fetch';
+import stringToHash from './hasher';
 
 export type FetchFunctionType = (
     url: RequestInfo,
@@ -6,9 +7,9 @@ export type FetchFunctionType = (
 ) => Promise<Response>;
 
 export default function memoizedNodeFetchFactory(fetchFunction: FetchFunctionType = fetch) {
-    const promiseCache: Map<string, Promise<Response>> = new Map();
+    const promiseCache: Map<number, Promise<Response>> = new Map();
 
-    async function wrapper(key: string, promise: Promise<Response>) {
+    async function wrapper(key: number, promise: Promise<Response>) {
         await promise;
 
         promiseCache.delete(key);
@@ -17,8 +18,7 @@ export default function memoizedNodeFetchFactory(fetchFunction: FetchFunctionTyp
     }
 
     function wrappedFetch(url: RequestInfo, options?: RequestInit) {
-        // Is there a better way?
-        const key = url.toString() + JSON.stringify(options);
+        const key = stringToHash(url.toString() + JSON.stringify(options));
         if (promiseCache.has(key)) {
             return promiseCache.get(key);
         }

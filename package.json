@@ -23,7 +23,7 @@
     "scripts": {
         "build": "npx tsc",
         "test": "ts-mocha  tests/**/*.spec.ts",
-        "gen:docs": "npx typedoc --out docs --exclude src/tests* --includeVersion src/index.ts",
+        "gen:docs": "npx typedoc --module library --out docs --exclude src/tests* --includeVersion src/index.ts",
         "prepublish": "yarn run build",
         "prettier:base": "npx prettier",
         "prettier:check": "yarn run prettier:base --list-different '{src,tests}/**/*.{ts,spec.ts}'",

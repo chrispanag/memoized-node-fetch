@@ -51,9 +51,9 @@ No. This package only caches the promise until it resolves. After the promise re
 
 The parameters of the two fetch functions are compared (the url and the RequestOptions), the specific key used for comparing the requests is: 
 
-`const key = url.toString() + JSON.stringify(options);`
+`const key = stringToHash(url.toString() + JSON.stringify(options));`
 
-There is a plan to use a proper hash of the query parameters in the future.
+The parameters of the request are hashed and stored on a map.
 
 #### Can I use another fetch-like function?
 
