@@ -5,6 +5,7 @@
     "types": "build/index.d.ts",
     "description": "A wrapper around node-fetch that caches the request's promise before resolving.",
     "author": "Christos Panagiotakopoulos <chrispanag@gmail.com>",
+    "website": "https://chrispanag.github.io/memoized-node-fetch/",
     "repository": "git://github.com/chrispanag/memoized-node-fetch.git",
     "publishConfig": {
         "access": "public"
@@ -24,9 +25,9 @@
         "test": "ts-mocha  tests/**/*.spec.ts",
         "gen:docs": "npx typedoc --out docs --exclude src/tests* --includeVersion src/index.ts",
         "prepublish": "yarn run build",
-        "prettier:base": "npx prettier --config ../../.prettierrc",
-        "prettier:check": "yarn run prettier:base -- --list-different \"src/**/*.{ts}\"",
-        "prettier:write": "yarn run prettier:base -- --write \"src/**/*.{ts}\""
+        "prettier:base": "npx prettier",
+        "prettier:check": "yarn run prettier:base --list-different '{src,tests}/**/*.{ts,spec.ts}'",
+        "prettier:write": "yarn run prettier:base --write '{src,tests}/**/*.{ts,spec.ts}'"
     },
     "devDependencies": {
         "@types/chai": "^4.2.12",

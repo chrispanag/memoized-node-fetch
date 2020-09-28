@@ -1,6 +1,9 @@
 import fetch, { RequestInfo, RequestInit, Response } from 'node-fetch';
 
-export type FetchFunctionType = (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response>
+export type FetchFunctionType = (
+    url: RequestInfo,
+    init?: RequestInit | undefined
+) => Promise<Response>;
 
 export default function memoizedNodeFetchFactory(fetchFunction: FetchFunctionType = fetch) {
     const promiseCache: Map<string, Promise<Response>> = new Map();

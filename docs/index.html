@@ -73,14 +73,14 @@
 					<h2>Why?</h2>
 				</a>
 				<p>Sometimes, you have to interface with an API that doesn&#39;t respond fast enough. Moreover, you might perform the same request multiple times. So:</p>
-				<ol>
+				<ul>
 					<li>You overload the API with the same exact requests.</li>
 					<li>You wait for additional time during the API response.</li>
-				</ol>
+				</ul>
 				<a href="#the-solution" id="the-solution" style="color: inherit; text-decoration: none;">
 					<h3>The solution</h3>
 				</a>
-				<p>Return the same promise for the same exact requests. This is more useful when you interface with stateless APIs, where you just consume data.</p>
+				<p>Return the same promise for the same exact requests <strong>until they resolve</strong>. This is more useful when you interface with stateless APIs, where you just consume data. </p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
@@ -106,11 +106,16 @@
 				<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
 					<h3>FAQ</h3>
 				</a>
+				<a href="#is-this-a-permanent-cache" id="is-this-a-permanent-cache" style="color: inherit; text-decoration: none;">
+					<h4>Is this a permanent cache?</h4>
+				</a>
+				<p>No. This package only caches the promise until it resolves. After the promise resolves, it is removed from the cache.</p>
 				<a href="#how-do-you-know-that-two-requests-are-the-same" id="how-do-you-know-that-two-requests-are-the-same" style="color: inherit; text-decoration: none;">
 					<h4>How do you know that two requests are the same?</h4>
 				</a>
 				<p>The parameters of the two fetch functions are compared (the url and the RequestOptions), the specific key used for comparing the requests is: </p>
 				<p><code>const key = url.toString() + JSON.stringify(options);</code></p>
+				<p>There is a plan to use a proper hash of the query parameters in the future.</p>
 				<a href="#can-i-use-another-fetch-like-function" id="can-i-use-another-fetch-like-function" style="color: inherit; text-decoration: none;">
 					<h4>Can I use another fetch-like function?</h4>
 				</a>
