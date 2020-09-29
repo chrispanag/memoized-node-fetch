@@ -79,7 +79,7 @@ Yes! Each time you run the factory function, a new promise-cache is created.
 
 #### Is this a react-query/swr equivalent? 
 
-You shouldn't use this library instead of react-query or swr. Rather you could use it in tandem with those libraries by substituting the fetcher function with this. Those libraries you mentioned, although they implement caching, they don't implement it while the fetch is loading (so if you perform the request two times, you'll get two different promises).
+No. For most cases, you shouldn't use this library instead of react-query or swr. Rather you could use it in tandem with those libraries by substituting the fetcher function with this. Those libraries, although they implement caching, they don't implement it while the fetch is loading (so if you perform the request two times, you'll get two different promises).
 
 #### Why you didn't use a debounce function?
 
