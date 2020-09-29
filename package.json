@@ -23,7 +23,7 @@
     "scripts": {
         "build": "npx tsc",
         "test": "ts-mocha  tests/**/*.spec.ts",
-        "gen:docs": "npx typedoc --mode modules --out docs --exclude src/tests* --includeVersion src/index.ts",
+        "gen:docs": "npx typedoc --mode library --out docs --includeVersion --excludeNotExported true --inputFiles src/index.ts",
         "prepublish": "yarn run build",
         "prettier:base": "npx prettier",
         "prettier:check": "yarn run prettier:base --list-different '{src,tests}/**/*.{ts,spec.ts}'",
@@ -37,7 +37,7 @@
         "prettier": "^2.1.2",
         "ts-mocha": "^7.0.0",
         "tslint": "^6.1.3",
-        "typedoc": "^0.19.2",
+        "typedoc": "^0.17.0-3",
         "typescript": "^4.0.2"
     },
     "dependencies": {
