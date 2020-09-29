@@ -81,6 +81,10 @@
 					<h3>The solution</h3>
 				</a>
 				<p>Return the same promise for the same exact requests <strong>until they resolve</strong>. This is more useful when you interface with stateless APIs, where you just consume data. </p>
+				<a href="#scenario" id="scenario" style="color: inherit; text-decoration: none;">
+					<h4>Scenario</h4>
+				</a>
+				<p>User (1) makes a request to the backend. The backend then performs a request to a third-party API and then before it resolves, user (2) makes another request to the backend. The backend then needs to perform the same request, as before, to the third-party API. With this package, instead of performing a new request, you can access and use the same promise for user&#39;s (1) request and have user (2) wait for the same request&#39;s resolution. This should shorten the wait time for user (2).</p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
@@ -106,10 +110,10 @@
 				<a href="#faq" id="faq" style="color: inherit; text-decoration: none;">
 					<h3>FAQ</h3>
 				</a>
-				<a href="#is-this-a-permanent-cache" id="is-this-a-permanent-cache" style="color: inherit; text-decoration: none;">
-					<h4>Is this a permanent cache?</h4>
+				<a href="#is-this-a-data-cache" id="is-this-a-data-cache" style="color: inherit; text-decoration: none;">
+					<h4>Is this a data cache?</h4>
 				</a>
-				<p>No. This package only caches the promise until it resolves. After the promise resolves, it is removed from the cache.</p>
+				<p>No. This package only caches the promise until it resolves. After the promise resolves, it is removed from the cache, along with the data returned.</p>
 				<a href="#how-do-you-know-that-two-requests-are-the-same" id="how-do-you-know-that-two-requests-are-the-same" style="color: inherit; text-decoration: none;">
 					<h4>How do you know that two requests are the same?</h4>
 				</a>
@@ -131,6 +135,17 @@
 					<h4>Can I have multiple promise-cache instances?</h4>
 				</a>
 				<p>Yes! Each time you run the factory function, a new promise-cache is created.</p>
+				<a href="#is-this-a-react-queryswr-equivalent" id="is-this-a-react-queryswr-equivalent" style="color: inherit; text-decoration: none;">
+					<h4>Is this a react-query/swr equivalent?</h4>
+				</a>
+				<p>You shouldn&#39;t use this library instead of react-query or swr. Rather you could use it in tandem with those libraries by substituting the fetcher function with this. Those libraries you mentioned, although they implement caching, they don&#39;t implement it while the fetch is loading (so if you perform the request two times, you&#39;ll get two different promises).</p>
+				<a href="#why-you-didn39t-use-a-debounce-function" id="why-you-didn39t-use-a-debounce-function" style="color: inherit; text-decoration: none;">
+					<h4>Why you didn&#39;t use a debounce function?</h4>
+				</a>
+				<ol>
+					<li>I don&#39;t want to do request deduplication per-se but rather I want to return the same promise for each instance of the request. That won&#39;t work easily with the debounce function.</li>
+					<li>The debounce implementation of lodash/underscore, waits for a specific preset time before running the request. If my promise takes longer to resolve, then I wouldn&#39;t reap the benefits of it. In my case, I wait for the promise to resolve before making a duplicate request.</li>
+				</ol>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
