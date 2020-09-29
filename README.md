@@ -1,6 +1,6 @@
 # Memoized Node Fetch
 
-[![npm](https://img.shields.io/npm/v/memoized-node-fetch)](https://www.npmjs.com/package/memoized-node-fetch)
+[![npm](https://img.shields.io/npm/v/memoized-node-fetch)](https://www.npmjs.com/package/memoized-node-fetch) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/chrispanag/memoized-node-fetch/Node%20CI) ![npm](https://img.shields.io/npm/dw/memoized-node-fetch)
 
 A wrapper around [node-fetch](https://www.npmjs.com/package/node-fetch) (or any other fetch-like function) that returns a single promise until it resolves.
 
