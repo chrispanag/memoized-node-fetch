@@ -15,6 +15,10 @@ Sometimes, you have to interface with an API that doesn't respond fast enough. M
 
 Return the same promise for the same exact requests **until they resolve**. This is more useful when you interface with stateless APIs, where you just consume data. 
 
+#### Scenario
+
+User (1) makes a request to the backend. The backend then performs a request to a third-party API and then before it resolves, user (2) makes another request to the backend. The backend then needs to perform the same request, as before, to the third-party API. With this package, instead of performing a new request, you can access and use the same promise for user's (1) request and have user (2) wait for the same request's resolution. This should shorten the wait time for user (2).
+
 ## Usage
 
 This API is a wrapper around node-fetch.
@@ -43,9 +47,9 @@ const fetch = memoizedNodeFetch();
 
 ### FAQ
 
-#### Is this a permanent cache?
+#### Is this a data cache?
 
-No. This package only caches the promise until it resolves. After the promise resolves, it is removed from the cache.
+No. This package only caches the promise until it resolves. After the promise resolves, it is removed from the cache, along with the data returned.
 
 #### How do you know that two requests are the same?
 
@@ -72,3 +76,12 @@ const fetch = memoizedNodeFetch(myOwnFetch);
 #### Can I have multiple promise-cache instances?
 
 Yes! Each time you run the factory function, a new promise-cache is created.
+
+#### Is this a react-query/swr equivalent? 
+
+You shouldn't use this library instead of react-query or swr. Rather you could use it in tandem with those libraries by substituting the fetcher function with this. Those libraries you mentioned, although they implement caching, they don't implement it while the fetch is loading (so if you perform the request two times, you'll get two different promises).
+
+#### Why you didn't use a debounce function?
+
+1. I don't want to do request deduplication per-se but rather I want to return the same promise for each instance of the request. That won't work easily with the debounce function.
+2. The debounce implementation of lodash/underscore, waits for a specific preset time before running the request. If my promise takes longer to resolve, then I wouldn't reap the benefits of it. In my case, I wait for the promise to resolve before making a duplicate request.
