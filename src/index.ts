@@ -10,10 +10,11 @@ export default function memoizedNodeFetchFactory(fetchFunction: FetchFunctionTyp
     const promiseCache: Map<number, Promise<Response>> = new Map();
 
     async function wrapper(key: number, promise: Promise<Response>) {
-        await promise;
-
-        promiseCache.delete(key);
-
+        try {
+            await promise;
+        } finally {
+            promiseCache.delete(key);
+        }
         return promise;
     }
 

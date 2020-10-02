@@ -4,7 +4,11 @@ import memoizedNodeFetch, { FetchFunctionType } from '../src';
 
 function testFetch(url: RequestInfo, options?: RequestInit | undefined): Promise<Response> {
     return new Promise((resolve, reject) => {
-        setTimeout(() => resolve({} as Response), 10);
+        setTimeout(
+            () =>
+                url === 'fail' ? reject(new Error('Network Unreachable')) : resolve({} as Response),
+            10
+        );
     });
 }
 
@@ -48,6 +52,15 @@ describe('MemoizedNodeFetch', () => {
 
         await promise1;
         const promise2 = fetch('test');
+
+        expect(promise1).to.not.be.equal(promise2);
+    });
+
+    it('Deletes a promise from the cache after it rejects', async () => {
+        const promise1 = fetch('fail');
+
+        await promise1.catch(() => {});
+        const promise2 = fetch('fail');
 
         expect(promise1).to.not.be.equal(promise2);
     });
