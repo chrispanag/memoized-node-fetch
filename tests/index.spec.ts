@@ -3,13 +3,15 @@ import { RequestInfo, RequestInit, Response } from 'node-fetch';
 import memoizedNodeFetch, { FetchFunctionType } from '../src';
 
 function testFetch(url: RequestInfo, options?: RequestInit | undefined): Promise<Response> {
-    return new Promise((resolve, reject) => {
-        setTimeout(
-            () =>
-                url === 'fail' ? reject(new Error('Network Unreachable')) : resolve({} as Response),
-            10
-        );
-    });
+    return new Promise((resolve, reject) => setTimeout(() => {
+        switch (url) {
+            case 'fail':
+                return reject(new Error('Network Unreachable'));
+            default:
+                return resolve({} as Response);
+        }
+        resolve({} as Response)
+    }, 10));
 }
 
 describe('MemoizedNodeFetch', () => {
@@ -57,12 +59,14 @@ describe('MemoizedNodeFetch', () => {
     });
 
     it('Deletes a promise from the cache after it rejects', async () => {
-        const promise1 = fetch('fail');
-
-        await promise1.catch(() => {});
-        const promise2 = fetch('fail');
-
-        expect(promise1).to.not.be.equal(promise2);
+        let promise1: Promise<any>, promise2: Promise<any>;
+        try {
+            promise1 = fetch('fail');
+            await promise1;
+            promise2 = fetch('fail');
+        } catch {
+            expect(promise1).to.not.be.equal(promise2);
+        }
     });
 
     it('Returns different keys for different options', async () => {
