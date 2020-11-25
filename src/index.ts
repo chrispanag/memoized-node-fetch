@@ -1,5 +1,5 @@
 import fetch, { RequestInfo, RequestInit, Response } from 'node-fetch';
-import stringToHash from './hasher';
+import requestToHash, { HashFunction } from './hasher';
 
 export type FetchFunctionType = (
     url: RequestInfo,
@@ -18,8 +18,12 @@ export default function memoizedNodeFetchFactory(fetchFunction: FetchFunctionTyp
         return promise;
     }
 
-    function wrappedFetch(url: RequestInfo, options?: RequestInit) {
-        const key = stringToHash(url.toString() + JSON.stringify(options));
+    function wrappedFetch(
+        url: RequestInfo,
+        options?: RequestInit,
+        hashFunction: HashFunction = requestToHash
+    ) {
+        const key = hashFunction(url, options);
         if (promiseCache.has(key)) {
             return promiseCache.get(key);
         }

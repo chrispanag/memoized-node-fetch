@@ -3,15 +3,16 @@ import { RequestInfo, RequestInit, Response } from 'node-fetch';
 import memoizedNodeFetch, { FetchFunctionType } from '../src';
 
 function testFetch(url: RequestInfo, options?: RequestInit | undefined): Promise<Response> {
-    return new Promise((resolve, reject) => setTimeout(() => {
-        switch (url) {
-            case 'fail':
-                return reject(new Error('Network Unreachable'));
-            default:
-                return resolve({} as Response);
-        }
-        resolve({} as Response)
-    }, 10));
+    return new Promise((resolve, reject) =>
+        setTimeout(() => {
+            switch (url) {
+                case 'fail':
+                    return reject(new Error('Network Unreachable'));
+                default:
+                    return resolve({} as Response);
+            }
+        }, 100)
+    );
 }
 
 describe('MemoizedNodeFetch', () => {
@@ -34,19 +35,23 @@ describe('MemoizedNodeFetch', () => {
         }
     });
 
-    it('Will return the same promise for requests with the same key and different with other', async () => {
+    it('Will return the same promise for requests with the same key', async () => {
         const promise1 = fetch('test');
         const promise2 = fetch('test');
         const promise3 = fetch('test');
-        const promise4 = fetch('test_different');
 
         const resultsEqual = [promise1, promise2, promise3];
 
         for (const r of resultsEqual) {
             expect(r).to.be.equal(promise1);
         }
+    });
 
-        expect(promise4).to.not.be.equal(promise1);
+    it('Will return different promises for different keys', async () => {
+        const promise = fetch('test');
+        const differentPromise = fetch('test_different');
+
+        expect(promise).to.not.be.equal(differentPromise);
     });
 
     it('Deletes a promise from the cache after it resolves', async () => {
