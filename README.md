@@ -1,6 +1,6 @@
 # Memoized Node Fetch
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![npm](https://img.shields.io/npm/v/memoized-node-fetch)](https://www.npmjs.com/package/memoized-node-fetch) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/chrispanag/memoized-node-fetch/Node%20CI) ![npm](https://img.shields.io/npm/dw/memoized-node-fetch)
@@ -100,6 +100,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/Nikpolik"><img src="https://avatars0.githubusercontent.com/u/9081019?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nikos Polykandriotis</b></sub></a><br /><a href="https://github.com/chrispanag/memoized-node-fetch/commits?author=Nikpolik" title="Code">💻</a></td>
     <td align="center"><a href="http://stackexchange.com/users/1677570/ferrybig"><img src="https://avatars2.githubusercontent.com/u/1576684?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fernando van Loenhout</b></sub></a><br /><a href="https://github.com/chrispanag/memoized-node-fetch/commits?author=ferrybig" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Bonjur"><img src="https://avatars3.githubusercontent.com/u/12468730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Bonjour Comosava</b></sub></a><br /><a href="https://github.com/chrispanag/memoized-node-fetch/commits?author=Bonjur" title="Documentation">📖</a></td>
   </tr>
 </table>
 
