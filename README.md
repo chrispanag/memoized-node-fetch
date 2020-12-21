@@ -1,6 +1,6 @@
 # Memoized Node Fetch
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![npm](https://img.shields.io/npm/v/memoized-node-fetch)](https://www.npmjs.com/package/memoized-node-fetch) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/chrispanag/memoized-node-fetch/Node%20CI) ![npm](https://img.shields.io/npm/dw/memoized-node-fetch)
@@ -96,8 +96,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Nikpolik"><img src="https://avatars0.githubusercontent.com/u/9081019?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nikos Polykandriotis</b></sub></a><br /><a href="https://github.com/chrispanag/memoized-node-fetch/commits?author=Nikpolik" title="Code">💻</a></td>
+  </tr>
+</table>
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
