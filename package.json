@@ -23,26 +23,26 @@
     "scripts": {
         "build": "npx tsc",
         "test": "ts-mocha  tests/**/*.spec.ts",
-        "gen:docs": "npx typedoc --mode library --out docs --includeVersion --excludeNotExported true --inputFiles src/index.ts",
+        "gen:docs": "npx typedoc --out docs --includeVersion src/index.ts",
         "prepublish": "yarn run build",
         "prettier:base": "npx prettier",
         "prettier:check": "yarn run prettier:base --list-different '{src,tests}/**/*.{ts,spec.ts}'",
         "prettier:write": "yarn run prettier:base --write '{src,tests}/**/*.{ts,spec.ts}'"
     },
     "devDependencies": {
-        "@types/chai": "^4.2.12",
-        "@types/mocha": "^8.0.3",
+        "@types/chai": "^4.2.14",
+        "@types/mocha": "^8.2.0",
         "all-contributors-cli": "^6.19.0",
         "chai": "^4.2.0",
-        "mocha": "^8.1.3",
-        "prettier": "^2.1.2",
+        "mocha": "^8.2.1",
+        "prettier": "^2.2.1",
         "ts-mocha": "^8.0.0",
         "tslint": "^6.1.3",
-        "typedoc": "^0.17.0-3",
-        "typescript": "^4.0.2"
+        "typedoc": "^0.20.16",
+        "typescript": "^4.1.3"
     },
     "dependencies": {
-        "@types/node-fetch": "^2.5.7",
+        "@types/node-fetch": "^2.5.8",
         "node-fetch": "^2.6.1"
     },
     "engines": {
