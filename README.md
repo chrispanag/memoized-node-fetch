@@ -16,7 +16,7 @@ Sometimes, you have to interface with an API that doesn't respond fast enough. M
 
 ### The solution
 
-Return the same promise for the same exact requests **until they resolve**. This is more useful when you interface with stateless APIs, where you just consume data. 
+Return the same promise for the same exact requests **until they resolve**. This is more useful when you interface with stateless APIs, where you just consume data.
 
 #### Scenario
 
@@ -56,7 +56,7 @@ No. This package only caches the promise until it resolves. After the promise re
 
 #### How do you know that two requests are the same?
 
-The parameters of the two fetch functions are compared (the url and the RequestOptions), the specific key used for comparing the requests is: 
+The parameters of the two fetch functions are compared (the url and the RequestOptions), the specific key used for comparing the requests is:
 
 `const key = stringToHash(url.toString() + JSON.stringify(options));`
 
@@ -80,9 +80,9 @@ const fetch = memoizedNodeFetch(myOwnFetch);
 
 Yes! Each time you run the factory function, a new promise-cache is created.
 
-#### Is this a react-query/swr equivalent? 
+#### Is this a react-query/swr equivalent?
 
-No. For most cases, you shouldn't use this library instead of react-query or swr. Rather you could use it in tandem with those libraries by substituting the fetcher function with this. Those libraries, although they implement caching, they don't implement it while the fetch is loading (so if you perform the request two times, you'll get two different promises).
+No. For most cases, you shouldn't use this library instead of react-query or swr. Rather you could use it in tandem with those libraries by substituting the fetcher function with this. swr, although it implements caching, doesn't implement it while the fetch is loading (so if you perform the request two times, you'll get two different promises). react-query now does (v3+), but comes with a bunch of other setup and features you might not need. So if what you want is a simple way to not multi-ping with identical fetches, this package is for you.
 
 #### Why you didn't use a debounce function?
 
